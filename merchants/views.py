@@ -6,11 +6,19 @@ APPEDIA_PRODUCTS = {
     '12345': {
         'price': '$5.67',
         'stock': 7
+    },
+    '56789': {
+        'price': '$5.67',
+        'stock': 0
     }
 }
 
 MICROMAZON_PRODUCTS = {
     '12345': {
+        'price': 4.56,
+        'available': True
+    },
+    '56789': {
         'price': 4.56,
         'available': True
     }
@@ -23,6 +31,19 @@ GOOGDIT_PRODUCTS = {
             {
                 'l': 123,
                 'q': 0
+            },
+            {
+                'l': 234,
+                'q': 5
+            }
+        ]
+    },
+    '56789': {
+        'p': 999000000,
+        'a': [
+            {
+                'l': 123,
+                'q': 1
             },
             {
                 'l': 234,

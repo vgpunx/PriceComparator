@@ -3,5 +3,5 @@ from .views import upc_view
 
 
 urlpatterns = [
-    path('', upc_view, name="UPC")
+    path('upcs', upc_view, name="UPC")
 ]
