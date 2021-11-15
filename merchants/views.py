@@ -40,15 +40,11 @@ def appedia(request):
     return JsonResponse(ret)
 
 
-def micromazon(request):
-    if 'upc' not in request.GET:
-        return JsonResponse({})
-    ret = MICROMAZON_PRODUCTS.get(request.GET['upc'], {})
+def micromazon(request, upc):
+    ret = MICROMAZON_PRODUCTS.get(upc, {})
     return JsonResponse(ret)
 
 
-def googdit(request):
-    if 'upc' not in request.GET:
-        return JsonResponse({})
-    ret = GOOGDIT_PRODUCTS.get(request.GET['upc'], {})
+def googdit(request, upc):
+    ret = GOOGDIT_PRODUCTS.get(upc, {})
     return JsonResponse(ret)
