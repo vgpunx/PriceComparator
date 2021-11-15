@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import upc_view
+from .views import vendor_product
 
 
 urlpatterns = [
-    path('upcs', upc_view, name="UPC")
+    path('price-comparator', vendor_product, name='PRICE_COMPARATOR')
 ]

@@ -32,15 +32,15 @@ def googdit_parser(upc):
 
 MERCHANTS = {
     'appedia': {
-        'url': 'appedia.fake/path',
+        'url': 'appedia.fake/',
         'function': appedia_parser,
     },
     'micromazon': {
-        'url': 'micromazon.lol/path',
+        'url': 'micromazon.lol/',
         'function': micromazon_parser,
     },
     'googdit': {
-        'url': 'googdit.nop/path',
+        'url': 'googdit.nop/',
         'function': googdit_parser,
     },
 }
