@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 import sys
-from .parsers import MERCHANTS
+from .parsers import merchant_parser
+from .models import Merchant
 
 
 def vendor_product(request):
@@ -12,18 +13,20 @@ def vendor_product(request):
     min_price = sys.float_info.max
     min_url = ''
 
-    for merchant, config in MERCHANTS.items():
-        price = config['function'](upc)
+    merchants_list = Merchant.objects.all()
+
+    for merchant in merchants_list:
+        merch_name = merchant.__get_name__()
+
+        # merch_api_url = 'http://' + merchant.__get_api_url__()
+        merch_api_url = 'http://localhost:8000/'
+        merch_query_fmt = merchant.__get_query_fmt__().replace('<upc>', upc)
+        merch_item_url = f'{merch_api_url}{merch_query_fmt}'
+
+        price = merchant_parser(merch_name, merch_item_url)
         if price is not None and price < min_price:
             min_price = price
-            min_url = config['url']
-            min_merchant = merchant
+            # min_url = merch_item_url
+            min_url = merchant.__get_api_url__() + merch_query_fmt
 
-    if min_merchant == 'appedia':
-        ret = str(min_url) + 'api/v1/itemdata?upc=' + str(upc)
-    elif min_merchant == 'micromazon':
-        ret = str(min_url) + str(upc) + "/productinfo"
-    elif min_merchant == 'googdit':
-        ret = str(min_url) + str(upc)
-
-    return HttpResponse(ret)
+    return HttpResponse(min_url)
