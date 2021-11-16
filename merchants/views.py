@@ -8,7 +8,7 @@ APPEDIA_PRODUCTS = {
         'stock': 7
     },
     '56789': {
-        'price': '$5.67',
+        'price': '$2.67',
         'stock': 0
     }
 }
