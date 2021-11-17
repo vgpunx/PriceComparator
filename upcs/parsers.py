@@ -6,7 +6,7 @@ import json
 def merchant_parser(name, upc_query):
     resp = urllib.request.urlopen(upc_query).readline()
     body = json.loads(resp)
-    if resp != JsonResponse({}):
+    if body != {}:
         if name == 'Appedia':
             price = appedia_parser(body)
         elif name == 'Micromazon':

@@ -28,5 +28,7 @@ def vendor_product(request):
             min_price = price
             # min_url = merch_item_url
             min_url = merchant.__get_api_url__() + merch_query_fmt
+        elif price is None:
+            return HttpResponse('Error: UPC invalid')
 
     return HttpResponse(min_url)
