@@ -1,4 +1,3 @@
-from django.http import JsonResponse
 import urllib.request
 import json
 

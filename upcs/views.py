@@ -18,7 +18,7 @@ def vendor_product(request):
     for merchant in merchants_list:
         merch_name = merchant.__get_name__()
 
-        # merch_api_url = 'http://' + merchant.__get_api_url__()
+        # merch_api_url = merchant.__get_api_url__()
         merch_api_url = 'http://localhost:8000/'
         merch_query_fmt = merchant.__get_query_fmt__().replace('<upc>', upc)
         merch_item_url = f'{merch_api_url}{merch_query_fmt}'
