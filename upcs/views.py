@@ -11,7 +11,6 @@ def vendor_product(request):
 
     upc = request.GET['upc']
     min_price = sys.float_info.max
-    min_url = ''
 
     merchants_list = Merchant.objects.all()
 
@@ -24,11 +23,14 @@ def vendor_product(request):
         merch_item_url = f'{merch_api_url}{merch_query_fmt}'
 
         price = merchant_parser(merch_name, merch_item_url)
-        if price is not None and price < min_price:
+
+        if (price is not None) and (price != -1) and (price < min_price):
             min_price = price
             # min_url = merch_item_url
-            min_url = merchant.__get_api_url__() + merch_query_fmt
+            ret = merchant.__get_api_url__() + merch_query_fmt
+        elif price == -1:
+            ret = 'Error: UPC invalid'
         elif price is None:
-            return HttpResponse('Error: UPC invalid')
+            ret = 'Item is not available at any merchant'
 
-    return HttpResponse(min_url)
+    return HttpResponse(ret)
