@@ -21,10 +21,10 @@ def merchant_parser(name, upc_query, test_query=None):
         elif name == 'Googdit':
             price = googdit_parser(body)
     else:
-        # Flag for UPC does not exist
-        return -1
+        return None
 
     return price
+
 
 # -==================================================-
 #           Merchant Parsers
